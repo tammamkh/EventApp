@@ -1,5 +1,5 @@
 
-# EventApp
+# Event Web App
 
 ## Project Description
 EventApp is a Blazor WebAssembly project designed to manage events. It includes pages to list all events, view details of a specific event, and add new events. The project uses an `EventService` to manage event data and supports liking events.
