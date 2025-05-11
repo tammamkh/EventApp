@@ -1,5 +1,6 @@
 @page "/eventdetails/{Id:int}"
 @inject EventService EventService
+
 @code {
     [Parameter] public int Id { get; set; }
     Event e;
@@ -12,12 +13,17 @@
 
 @if (e != null)
 {
-    <h3>@e.Title</h3>
-    <p>@e.Description</p>
-    <p>@e.Date.ToShortDateString()</p>
-    <p>إعجابات: @e.Likes</p>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title">@e.Title</h3>
+            <p class="card-text"><strong>الوصف:</strong> @e.Description</p>
+            <p class="card-text"><strong>التاريخ:</strong> @e.Date.ToShortDateString()</p>
+            <p class="card-text"><strong>الإعجابات:</strong> @e.Likes</p>
+            <a href="/events" class="btn btn-secondary mt-3">العودة إلى الأحداث</a>
+        </div>
+    </div>
 }
 else
 {
-    <p>الحدث غير موجود.</p>
+    <div class="alert alert-warning">الحدث غير موجود.</div>
 }

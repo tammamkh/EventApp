@@ -33,11 +33,14 @@
 </div>
 
 @code {
-    private Event newEvent = new();
+    private Event newEvent = new()
+    {
+        Date = DateTime.Today // يبدأ من تاريخ اليوم
+    };
 
     private void HandleValidSubmit()
     {
         EventService.AddEvent(newEvent);
-        newEvent = new(); // Reset form
+        newEvent = new() { Date = DateTime.Today }; // إعادة التهيئة بعد الإرسال
     }
 }
