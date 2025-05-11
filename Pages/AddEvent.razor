@@ -1,33 +1,43 @@
 @page "/addevent"
 @inject EventService EventService
 
-<h3>إضافة حدث جديد</h3>
+<h3 class="mb-4">إضافة حدث جديد</h3>
 
-<EditForm Model="@newEvent" OnValidSubmit="Add">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="card shadow-sm">
+    <div class="card-body">
+        <EditForm Model="@newEvent" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-    <div>
-        <label>العنوان:</label>
-        <InputText @bind-Value="newEvent.Title" />
+            <div class="mb-3">
+                <label class="form-label">العنوان:</label>
+                <InputText @bind-Value="newEvent.Title" class="form-control" />
+                <ValidationMessage For="@(() => newEvent.Title)" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">الوصف:</label>
+                <InputTextArea @bind-Value="newEvent.Description" class="form-control" />
+                <ValidationMessage For="@(() => newEvent.Description)" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">التاريخ:</label>
+                <InputDate @bind-Value="newEvent.Date" class="form-control" />
+                <ValidationMessage For="@(() => newEvent.Date)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">إضافة</button>
+        </EditForm>
     </div>
-    <div>
-        <label>الوصف:</label>
-        <InputTextArea @bind-Value="newEvent.Description" />
-    </div>
-    <div>
-        <label>التاريخ:</label>
-        <InputDate @bind-Value="newEvent.Date" />
-    </div>
-    <button type="submit">إضافة</button>
-</EditForm>
+</div>
 
 @code {
-    Event newEvent = new();
+    private Event newEvent = new();
 
-    void Add()
+    private void HandleValidSubmit()
     {
         EventService.AddEvent(newEvent);
-        newEvent = new(); // إعادة تعيين النموذج
+        newEvent = new(); // Reset form
     }
 }
