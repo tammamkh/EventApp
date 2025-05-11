@@ -1,0 +1,33 @@
+@page "/addevent"
+@inject EventService EventService
+
+<h3>إضافة حدث جديد</h3>
+
+<EditForm Model="@newEvent" OnValidSubmit="Add">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>العنوان:</label>
+        <InputText @bind-Value="newEvent.Title" />
+    </div>
+    <div>
+        <label>الوصف:</label>
+        <InputTextArea @bind-Value="newEvent.Description" />
+    </div>
+    <div>
+        <label>التاريخ:</label>
+        <InputDate @bind-Value="newEvent.Date" />
+    </div>
+    <button type="submit">إضافة</button>
+</EditForm>
+
+@code {
+    Event newEvent = new();
+
+    void Add()
+    {
+        EventService.AddEvent(newEvent);
+        newEvent = new(); // إعادة تعيين النموذج
+    }
+}

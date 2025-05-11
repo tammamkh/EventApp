@@ -1,0 +1,18 @@
+@page "/events"
+@inject EventService EventService
+
+<h3>جميع الأحداث</h3>
+
+<ul>
+    @foreach (var e in EventService.GetEvents())
+    {
+        <li>
+            <a href="/eventdetails/@e.Id">@e.Title</a> - @e.Date.ToShortDateString() - إعجابات: @e.Likes
+            <button @onclick="() => Like(e.Id)">إعجاب</button>
+        </li>
+    }
+</ul>
+
+@code {
+    void Like(int id) => EventService.LikeEvent(id);
+}

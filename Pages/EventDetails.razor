@@ -1,0 +1,23 @@
+@page "/eventdetails/{Id:int}"
+@inject EventService EventService
+@code {
+    [Parameter] public int Id { get; set; }
+    Event e;
+
+    protected override void OnInitialized()
+    {
+        e = EventService.GetEventById(Id);
+    }
+}
+
+@if (e != null)
+{
+    <h3>@e.Title</h3>
+    <p>@e.Description</p>
+    <p>@e.Date.ToShortDateString()</p>
+    <p>إعجابات: @e.Likes</p>
+}
+else
+{
+    <p>الحدث غير موجود.</p>
+}
