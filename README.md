@@ -14,6 +14,6 @@ EventApp is a Blazor WebAssembly project designed to manage events. It includes 
 ## Setup Instructions
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/EventApp.git
+   git clone https://github.com/tammamkh/EventApp.git
    cd EventApp
    ```
