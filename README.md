@@ -1,4 +1,3 @@
-# EventWebAssembly
 
 # EventApp
 
